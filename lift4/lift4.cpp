@@ -45,7 +45,7 @@ WaitingPerson currentPerson;
 int liczbapasazerow = 0;
 
 DWORD czasStartCzekania = 0;
-const DWORD czas_czekania_windy = 2000; // 1 sekunda
+const DWORD czas_czekania_windy = 5000; // 1 sekunda
 
 int currentFloor = 1;   // aktualne piętro (1–5)
 int targetFloor = 1;    // docelowe piętro
