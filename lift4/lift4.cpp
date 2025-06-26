@@ -324,25 +324,6 @@ void DrawStickFigure1(Graphics& g, int centerX, int centerY)
     g.DrawLine(&pen, centerX, centerY + 2 * headRadius, centerX + 15, centerY + 40);
 }
 */
-//filipek
-void DrawStickFigureONE(Graphics& g, int centerX, int centerY)
-{
-    Pen pen(Color::Black, 1);
-
-    // Głowa (okrąg)
-    int headRadius = 2;
-    g.DrawEllipse(&pen, centerX - headRadius, centerY - 3 * headRadius, 2 * headRadius, 2 * headRadius);
-
-    // Ciało (linia w dół od głowy)
-    g.DrawLine(&pen, centerX, centerY - headRadius, centerX, centerY + 2 * headRadius);
-
-    // Ręce (pozioma linia)
-    g.DrawLine(&pen, centerX - 20, centerY, centerX + 20, centerY);
-
-    // Nogi (dwie linie w dół i na boki)
-    g.DrawLine(&pen, centerX, centerY + 2 * headRadius, centerX - 15, centerY + 40);
-    g.DrawLine(&pen, centerX, centerY + 2 * headRadius, centerX + 15, centerY + 40);
-}
 
 void DrawStickFigure(Graphics& g, int centerX, int centerY, int floorNumber, float scale = 1.0f) {
     Pen pen(Color::Black, 1);
@@ -874,8 +855,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         DrawElevator(graphics, 100, 100, 160, 400);
 
         DrawWinda(graphics, 100, elevatorY, 160, 80);
-
-        DrawStickFigureONE(graphics, 500, 150); //Filipek
 
         // wylaczenie przyciskow dla aktualnego piętra
         for (int floor = 0; floor < 5; ++floor) {
