@@ -33,7 +33,7 @@ Ten projekt to graficzny symulator windy napisany w języku C++ z użyciem bibli
 - Winda wybiera optymalną trasę (priorytet pasażerów jadących w tym samym kierunku).
 - Po wysadzeniu ostatniego pasażera i braku zgłoszeń — winda po 5 sekundach wraca na 1. piętro.
 
-## 📋 Wymagania
+## Wymagania
 
 - Windows (WinAPI + GDI+)
 - Visual Studio (zalecane: 2019 lub 2022)
