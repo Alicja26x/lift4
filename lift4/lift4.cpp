@@ -45,7 +45,7 @@ WaitingPerson currentPerson;
 int liczbapasazerow = 0;
 
 DWORD czasStartCzekania = 0;
-const DWORD czas_czekania_windy = 5000; // 1 sekunda
+const DWORD czas_czekania_windy = 5000; 
 
 int currentFloor = 1;   // aktualne piętro (1–5)
 int targetFloor = 1;    // docelowe piętro
@@ -600,12 +600,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 currentFloor = targetFloor;
                 isMoving = false;
 
-                // Sprawdź, czy ktoś właśnie stoi na tym piętrze i jedzie w tym samym kierunku
+                //  czy ktoś właśnie stoi na tym piętrze i jedzie w tym samym kierunku
                 for (auto& p : waitingPeople)
                 {
                     if (!p.isActive) continue;
 
-                    // ten warunek jest minimalny i poprawny
                     if (p.currentFloor == currentFloor &&
                         ((kierunekWindy == 1 && p.destinationFloor > p.currentFloor) ||
                             (kierunekWindy == -1 && p.destinationFloor < p.currentFloor)))
@@ -614,7 +613,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                         pasazerowieWWindzie.push_back(p);
                         liczbapasazerow++;
 
-                        // Aktualizacja targetFloor, żeby jechać dalej, jeśli trzeba
                         if (kierunekWindy == 1 && p.destinationFloor > targetFloor)
                             targetFloor = p.destinationFloor;
                         else if (kierunekWindy == -1 && p.destinationFloor < targetFloor)
@@ -627,7 +625,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 {
                     pasazerowieWWindzie.push_back(currentPerson);
                     currentPerson.isActive = false;
-                    // trzeba również zdezaktywować **oryginalnego** pasażera z `waitingPeople`
                     for (auto& p : waitingPeople) {
                         if (p.currentFloor == currentPerson.currentFloor &&
                             p.destinationFloor == currentPerson.destinationFloor &&
@@ -668,7 +665,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                         return 0;
                     }
 
-                    // Zabieramy osoby z tego piętra jadące w tym samym kierunku
                     for (auto& p : waitingPeople) {
                         if (p.isActive && liczbapasazerow < MAKS_PASAZEROW &&
                             p.currentFloor == currentFloor &&
@@ -778,7 +774,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                     if (!ktosPoDrodze)
                     {
-                        // Spróbuj znaleźć osobę w przeciwnym kierunku
                         WaitingPerson nowy;
                         bool ktosWsiadl = false;
                         for (auto& p : waitingPeople) {
